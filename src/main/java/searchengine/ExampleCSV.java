@@ -16,6 +16,8 @@ public class ExampleCSV {
         scanner = new Scanner(inputStream);
         String line = scanner.nextLine();
         String[] words = csvParser.parseLine(line);
-        System.out.printf("%s\n", Arrays.toString(words));
-    };
+        System.out.println("URL: " + words[0]);
+        System.out.println("alt: " + words[1]);
+        System.out.println("title: " + words[2]);
+    }
 }
