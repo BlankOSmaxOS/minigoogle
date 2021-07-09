@@ -37,8 +37,6 @@ public class MiniGoogle {
             System.out.println(words[1]);
             System.out.println("______________");
             System.out.println(words[2]);
-
-
              */
 
             if (words[2].equals(input)) {
