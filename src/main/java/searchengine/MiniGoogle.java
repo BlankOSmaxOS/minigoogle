@@ -20,6 +20,7 @@ public class MiniGoogle {
 
         GUISetup();
         input = "Call me, MAYBE.";
+        // TEST INPUT
 
 
         File file = new File("C:/Users/Blanco/Documents/_privat/Studium_IMI/2021_03_SoSe/B15_Informatik_3/exercise/Info3_Lab_05/src/main/resources/comics.csv");
