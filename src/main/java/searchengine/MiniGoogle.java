@@ -20,9 +20,10 @@ public class MiniGoogle {
     public static void main(String[] args) throws IOException {
 
         GUISetup();
-        input = "back";
+        input = "fres";
 
         String [] inputCS = input.split("");
+        System.out.println(inputCS[0]);
 
 
         // TEST INPUT
@@ -56,27 +57,49 @@ public class MiniGoogle {
                 //test = words[1].replaceAll("[a-z]{7}\\b","");
 
                 //System.out.println(scan.nextLine());
-/*
+
                 for (int i = 0; i < inputCS.length; i++) {
 
+                    int size = 0;
                     for (int j = 0; j < testWordsCS.length; j++) {
-                    if (inputCS[i].matches(testWordsCS[j])) {
-                        i++;
-                    }
+                        if (inputCS[i].matches(testWordsCS[j])) {
+                            System.out.println(input);
+                            System.out.println(testWordsCS[j]);
+                            i++;
+                            size++;
+                            if (size == inputCS.length ) {
+                                System.out.print("Input: ");
+                                System.out.println(input);
+                                System.out.print("Link: ");
+                                System.out.println(words[0]);
+                                System.out.print("Titel: ");
+                                System.out.println(words[1]);
+                                System.out.print("Text: ");
+                                System.out.println(words[2]);
+                                System.out.println("______________");
+                                break;
+                            }
 
+                        } else {
+                            j++;
+                            i = 0;
 
-                        System.out.print("Link: ");
-                        System.out.println(words[0]);
-                        System.out.print("Titel: ");
-                        System.out.println(words[1]);
-                        System.out.print("Text: ");
-                        System.out.println(words[2]);
-                        System.out.println("______________");
+                        }
+
                     }
 
                 }
+                System.out.println("______TEST________");
 
- */
+
+
+
+
+
+
+
+
+ /*
 
 
                  ////// CASE SENSITIV
@@ -93,6 +116,8 @@ public class MiniGoogle {
                     }
 
                 }
+
+  */
 
             }
         }
