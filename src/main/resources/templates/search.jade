@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title Alien Visitors 2
+    body
+        h1 Search
+        h3 Query term (in title)
+        p case sensitive
+        ol
+            for Hyperlink in results
+                     li
+                       a(href="#{Hyperlink.Link}") #{Hyperlink.title}
+                       | :#{Hyperlink.text}
+

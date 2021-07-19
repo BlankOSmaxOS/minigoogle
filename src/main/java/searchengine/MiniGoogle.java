@@ -1,38 +1,55 @@
 package searchengine;
 
 import com.opencsv.CSVParser;
+import spark.ModelAndView;
+import spark.template.jade.JadeTemplateEngine;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 import static spark.Spark.*;
+
 
 public class MiniGoogle {
     private static String input;
 
+    private String link;
+    private String title;
+    private String text;
+
+
+    public String getLink(String link) {
+        return this.link = link;
+    }
+
+    public String getTitle(String title) {
+        return this.title = title;
+    }
+
+    public String getText(String text) {
+        return this.text = text;
+    }
     // GUI
 
 
     public static void main(String[] args) throws IOException {
 
-        GUISetup();
-        input = "DOES";
-        boolean caseSensitiv = false;
-        boolean wholeWord = false;
+        input = "for";
 
-        File file = new File("C:/Users/Blanco/Documents/_privat/Studium_IMI/2021_03_SoSe/B15_Informatik_3/exercise/Info3_Lab_05/src/main/resources/comics.csv");
-        Scanner scan = new Scanner(file);
-        CSVParser csvParser = new CSVParser();
+        get("/search", (rq, rs) -> {
+            List<Hyperlink> results = new ArrayList<Hyperlink>();
+            //results.add(new Hyperlink("link", "title", "text"));
 
+            boolean caseSensitiv = true;
+            boolean wholeWord = true;
+            File file = new File("C:/Users/Blanco/Documents/_privat/Studium_IMI/2021_03_SoSe/B15_Informatik_3/exercise/Info3_Lab_05/src/main/resources/comics.csv");
+            Scanner scan = new Scanner(file);
+            CSVParser csvParser = new CSVParser();
 
-        if (input.matches("[a-z A-Z]*")) {
-            // Switch Case Sensitive
-
-
+            //if (input.matches("[a-z A-Z]*")) {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 String[] words = csvParser.parseLine(line);
@@ -48,6 +65,17 @@ public class MiniGoogle {
                             i++;
                             size++;
                             if (size == inputCaseSensitive.length - 1) {
+
+                                    /*String link = words[0];
+                                    String title = words[1];
+                                    String text = words[2];
+                                    //results.add(new Hyperlink("TEST2","rew", "tr"));
+
+
+                                     */
+                                //results.add(new Hyperlink("link2", "title2", "text"));
+
+                                results.add(new Hyperlink(words[0], words[1], words[2]));
                                 System.out.print("Input: ");
                                 System.out.println(input);
                                 System.out.print("Link: ");
@@ -83,7 +111,6 @@ public class MiniGoogle {
                                 System.out.println(words[2]);
                                 System.out.println("______________");
                             }
-
                         }
                     }
                     if (wholeWord == false) {
@@ -115,17 +142,22 @@ public class MiniGoogle {
                                 size = 0;
                             }
                         }
-
-
                     }
                 }
             }
-        }
+
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("results", results);
+            return new ModelAndView(map, "search");
+        }, new JadeTemplateEngine());
+
+
+        // get("/", (req, res) -> {
+        //           return "MiniGoogle by Blank Maximilian, Y"; // TODO: replac   e X and Y by your name(s)
+
+
     }
-
-
-    //get("/", (req, res) -> {
-    //  return "MiniGoogle by Blank Maximilian, Y"; // TODO: replace X and Y by your name(s)
 
 
     //TODO: Scanner + Streams
